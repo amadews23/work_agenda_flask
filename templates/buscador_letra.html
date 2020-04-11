@@ -1,0 +1,49 @@
+  			<table class="table table-bordered">
+				<tr>
+					<td>
+						<h4>
+							<span>Apellido:</span>
+						</h4>
+					</td>
+					<td>
+						<h4>
+							<a href="{{url_for('pacientes',lap='0')}}">
+								<span class="label label-info">TODOS</span>
+							</a>
+						</h4>
+					</td>
+					<td>
+						<h4>
+						{% for letra in listamayusculas %}
+							<a href="{{url_for('pacientes',lap=letra)}}">
+								<span class="label label-info">{{letra}}</span>
+							</a>
+						{% endfor %}
+						</h4>
+					</td>
+
+				</tr>
+				<tr>
+					<td>
+						<h4>
+							<span>Nombre:</span>
+						</h4>
+					</td>
+					<td>
+						<h4>
+							<a href="{{url_for('pacientes',lnom='0')}}">
+								<span class="label label-info">TODOS</span>
+							</a>
+						</h4>
+					</td>
+					<td>
+						<h4>
+						{% for letra in listamayusculas %}
+							<a href="{{url_for('pacientes',lnom=letra)}}">
+								<span class="label label-info">{{letra}}</span>
+							</a>
+						{% endfor %}
+						</h4>
+					</td>
+				</tr>
+			</table>
