@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Gestión de pacientes.{% endblock %}
+{% block contenido %}
+	    <div class="panel panel-default">
+  		<!-- Default panel contents -->
+			{% include 'buscador_letra.html' %}
+
+			<div class="panel-heading"><h3>Lista de pacientes:</h3></div>
+			<a href="{{url_for('paciente_edit')}}">
+	            <button type="button" class="btn btn-primary">Nuevo paciente</button>
+			</a>
+  			<table class="table table-bordered">
+				<tr>
+					<td><b>Nº</b></td>
+					<td><b>Nombre:</b></td>
+					<td><b>Apellidos:</b></td>
+					<td><b>DNI:</b></td>
+					<td><b>Telefono1:</b></td>
+					<td><b>Telefono2:</b></td>
+					<td><b>Email:</b></td>
+					<td><b>Visitas:</b></td>
+                    <td><b>Fecha 1º cita:</b></td>
+				</tr>
+  	    		{% for paciente in pacientes %}
+  	    		<tr>
+					<td>
+						<h4>
+							<a href="{{url_for('paciente',id=paciente.id)}}">
+								<span class="label label-info">{{paciente.id}}</span>
+							</a>
+						</h4>
+					</td>
+					<td>
+						<h4>
+							<span class="label label-default">{{paciente.nombre}}</span>
+						</h4>
+					</td>
+
+                    <td>
+						<h4>
+							<span class="label label-default">{{paciente.apellidos}}</span>
+						</h4>
+					</td>
+					<td>
+						<h4>
+							<span class="label label-default">{{paciente.dni}}</span>
+						</h4>
+					</td>
+                    <td>
+						<h4>
+							<span class="label label-default">{{paciente.telefono1}}</span>
+						</h4>
+					</td>
+                    <td>
+						<h4>
+							<span class="label label-default">{{paciente.telefono2}}</span>
+						</h4>
+					</td>
+                    <td>
+						<h4>
+							<span class="label label-default">{{paciente.email}}</span>
+						</h4>
+					</td>
+                    <td>
+						<h4>
+							{% if paciente.numero_visitas(paciente.id) == 0 %}
+							<span class="label label-warning">{{paciente.numero_visitas(paciente.id) }}</span>
+							{% else %}
+							<span class="label label-default">{{paciente.numero_visitas(paciente.id) }}</span>
+							{% endif %}
+						</h4>
+					</td>
+                    <td>
+						<h4>
+							{% if paciente.primera_visita(paciente.id) == None %}
+							<span class="label label-warning">Ninguna cita</span>
+							{% else %}
+							<span class="label label-default">{{paciente.primera_visita(paciente.id)[0].strftime("%m/%d/%Y") }}</span>
+							{% endif %}
+						</h4>
+					</td>
+   	    		</tr>
+  	    		{% endfor %}
+  	    	</table>
+  	    </div>
+  	</div>
+{% endblock %}
