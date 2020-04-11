@@ -1,0 +1,110 @@
+<table class="table table-bordered">
+    <tr>
+		<td>
+            <b>Nº</b>
+        </td>
+		<td>
+            <b>Fecha de la cita:</b>
+        </td>
+		<td>
+            <b>Fecha de creación:</b>
+        </td>
+		<td>
+            <b>Precio:</b>
+        </td>
+		<td>
+            <b>Estado:</b>
+        </td>
+		<td>
+            <b>Facturada:</b>
+        </td>
+        {% if mostrar_lista_paciente != '0' %}
+		<td>
+            <b>Paciente:</b>
+        </td>
+		<td>
+            <b>Telefonos:</b>
+        </td>
+        {% endif %}
+	</tr>
+  		{% for cita in citas %}
+  	<tr>
+		<td>
+			<h4>
+				<a href="{{url_for('cita_edit',id=cita.id)}}">
+					<span class="label label-info">{{cita.id}}</span>
+				</a>
+			</h4>
+		</td>
+		<td>
+	        <h4>
+				<span class="label label-info">{{cita.fecha_cita.strftime("%d/%m/%Y") }}</span>
+				&nbsp;
+				<span class="label label-info">{{ cita.fecha_cita.strftime("%H:%M:%S") }}</span>
+			</h4>
+        </td>
+		<td>
+			<h4>
+				<span class="label label-default">{{ cita.fecha_creacion.strftime("%d/%m/%Y") }}</span>
+				&nbsp;
+				<span class="label label-default">{{ cita.fecha_creacion.strftime("%H:%M:%S") }}</span>
+			</h4>
+		</td>
+			<td>
+			<h4>
+				<span class="label label-default">{{ cita.precio }} €</span>
+			</h4>
+		</td>
+			{% if cita.finalizada == EstadoCita.PENDIENTE %}
+		<td>
+			<h4>
+				<span class="label label-danger">{{ EstadoCita.PENDIENTE.name}}</span>
+			</h4>
+		</td>
+			{% elif cita.finalizada == EstadoCita.CANCELADA %}
+		<td>
+			<h4>
+				<span class="label label-warning">{{ EstadoCita.CANCELADA.name }}</span>
+			</h4>
+		</td>
+			{% else %}
+		<td>
+			<h4>
+				<span class="label label-success">{{ EstadoCita.FINALIZADA.name }}</span>
+			</h4>
+		</td>
+			{% endif %}
+			{% if cita.facturada == False %}
+		<td>
+			<h4>
+		    	<span class="label label-danger">NO</span>
+			</h4>
+        </td>
+			{% else %}
+		<td>
+			<h4>
+				<span class="label label-success">SI</span>
+			</h4>
+		</td>
+			{% endif %}
+        {% if mostrar_lista_paciente != '0' %}
+		<td>
+			<h4>
+				<a href="{{url_for('inicio',id=cita.paciente_id)}}">
+		    		<span class="label label-info">{{cita.pacientes.nombre}}</span>
+			    	&nbsp;<br>
+				    <span class="label label-info">{{cita.pacientes.apellidos}}</span>
+			    </a>
+            </h4>
+        </td>
+		<td>
+			<h4>
+				<span class="label label-default">{{cita.pacientes.telefono1}}</span>
+				&nbsp;<br>
+				<span class="label label-default">{{cita.pacientes.telefono2}}</span>
+			</h4>
+		</td>
+        {% endif %}
+    </tr>
+  	{% endfor %}
+</table>
