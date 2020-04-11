@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Paciente{% endblock %}
+{% block contenido %}
+<!--<div class="container">-->
+<div class="panel panel-default">
+      <!--<h4 class="mb-3">Paciente:</h4>-->
+       {% include 'paciente_datos.html' %}
+       <button type="button" class="btn btn-primary">Cambiar paciente</button>
+
+       <div class="panel-heading">
+            {% if id_cita=='0' %}
+            <h3>Nueva Cita: </h3>
+            {% else %}
+            <h3>Cita: nº {{id_cita}}</h3>
+            {% endif %}
+       </div>
+       <form method="post" action={{url_for("cita_edit")}}>
+
+
+           <div class="row">
+               <br>
+                    {{ form.csrf_token }}
+
+               <div class="col-md-2 mb-3">
+                    {# Seria deseable usar para el hidden  HiddenField()???? #}
+                    {% if idpac=='None' %}
+                        <input name="id_paciente" type="hidden" value=0>
+                    {% else %}
+                        <input name="id_paciente" type="hidden" value={{idpac}}>
+                    {% endif %}
+                    {% if id_cita == '0' %}
+                    {# Con type=date saldrá el picker(widjet) del calendario #}
+                        <input name="id_cita" type="hidden" value=0>
+                        {{form.fecha_cita.label() }}{{form.fecha_cita(type="date")}}
+                    {% else %}
+                        <input name="id_cita" type="hidden" value={{id_cita}}>
+                        {{form.fecha_cita.label() }}{{form.fecha_cita(type="date", value=fecha_cita)}}
+                    {% endif %}
+                    <br/>
+               </div>
+               <div class="col-md-2 mb-3">
+                   {% if id_cita == '0' %}
+                     {{form.hora.label() }}{{form.hora(type="time")}}
+                    {% else %}
+                      {{form.hora.label() }}{{form.hora(type="time", value=hora_cita)}}
+                    {% endif %}
+                    <br/>
+               </div>
+               <div class="col-md-1 mb-3">
+                     {{form.precio.label() }}{{form.precio(size="5")}}
+
+                    <br/>
+               </div>
+               <div class="col-md-2 mb-3">
+                     {{form.finalizada.label() }}{{form.finalizada(class="form-control")}}
+
+                    <br/>
+               </div>
+                <div class="col-md-1 mb-3">
+                     {{form.facturada.label() }}{{form.facturada()}}
+
+                    <br/>
+               </div>
+               <div class="col-md-6 mb-3">
+                    {{form.varios.label() }}<br/>{{form.varios(rows="5",cols="60",class="form-control")}}
+                    <br/>
+               </div>
+           </div>
+           <div class="row">
+                <div class="col-md-4 mb-3">
+                    {{form.submit(class="btn btn-lg btn-primary btn-block")}}
+                </div>
+                <div class="col-md-2 mb-3">
+                     <button type="button" class="btn btn-lg btn-info btn-block">Cancelar</button>
+                </div>
+           </div>
+       </form>
+
+</div>
+{% endblock %}
