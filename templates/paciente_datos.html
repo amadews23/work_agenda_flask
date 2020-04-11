@@ -1,0 +1,37 @@
+			<div class="panel-heading"><h3>{{paciente.id}} - {{paciente.nombre}} {{paciente.apellidos}} - {{paciente.dni}}</h3></div>
+  			<table class="table table-bordered">
+                <tr>
+					<td>
+                        <h4>Telefonos:</h4>
+                        <b>{{paciente.telefono1}} / {{paciente.telefono2}}</b>
+                    </td>
+                    <td>
+                        <h4>Email:</h4>
+                        <b>{{paciente.email}}</b>
+                    </td>
+                    <td>
+                        <h4>Citas:</h4>
+                        <b>{{paciente.numero_visitas(paciente.id)}}</b>
+                    </td>
+                    <td>
+                        <h4>Fecha 1º cita:</h4>
+                        {% if paciente.primera_visita(paciente.id) == None %}
+                        <b>Ninguna cita</b>
+                        {% else %}
+                        <b>{{paciente.primera_visita(paciente.id)[0].strftime("%d/%m/%Y") }}</b>
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <h4>Domicilio:</h4>
+                        <b>{{paciente.domicilio}} - {{paciente.cp}} - {{paciente.ciudad}}</b>
+                    </td>
+                    <td>
+                        <h4>Varios:</h4>
+                        <b>{{paciente.varios}}</b>
+                    </td>
+                </tr>
+            </table>
