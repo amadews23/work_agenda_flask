@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Gestión de citas.{% endblock %}
+{% block contenido %}
+
+	    <div class="panel panel-default">
+  		<!-- Default panel contents -->
+            {% include 'botones_lista_citas.html' %}
+
+			<div class="panel-heading"><h3>Lista de citas:</h3></div>
+			{% include 'lista_citas.html' %}
+  	    </div>
+  	</div>
+{% endblock %}
