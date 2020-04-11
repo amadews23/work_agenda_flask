@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Paciente{% endblock %}
+{% block contenido %}
+<!--<div class="container">-->
+<div class="panel panel-default">
+      <!--<h4 class="mb-3">Paciente:</h4>-->
+       <div class="panel-heading">
+            <h3>Paciente:</h3>
+       </div>
+       <form method="post" action={{url_for("paciente_edit")}}>
+
+           <div class="row">
+               <br>
+                    {{ form.csrf_token }}
+               <div class="col-md-4 mb-3">
+                    {# Seria deseable usar para el hidden  HiddenField()???? #}
+                    {% if id=='None' %}
+                        <input name="id_paciente" type="hidden" value=0>
+                    {% else %}
+                        <input name="id_paciente" type="hidden" value={{id}}>
+                    {% endif %}
+
+                    {{form.nombre.label() }}{{form.nombre(size="100",class="form-control")}}
+                    <br/>
+               </div>
+               <div class="col-md-4 mb-3">
+                    {{form.apellidos.label() }}{{form.apellidos(size="200",class="form-control")}}
+                    <br/>
+               </div>
+               <div class="col-md-2 mb-3">
+                    {{form.dni.label() }}{{form.dni(size="10",class="form-control")}}
+                    <br/>
+               </div>
+               <div class="col-md-4 mb-3">
+                    {{form.email.label() }}{{form.email(size="10",class="form-control")}}
+                    <br/>
+               </div>
+               <div class="col-md-2 mb-3">
+                    {{form.telefono1.label() }}{{form.telefono1(size="10",class="form-control")}}
+                    <br/>
+               </div>
+               <div class="col-md-2 mb-3">
+                    {{form.telefono2.label() }}{{form.telefono2(size="10",class="form-control")}}
+                    <br/>
+               </div>
+               <div class="col-md-5 mb-3">
+                    {{form.domicilio.label() }}{{form.domicilio(size="10",class="form-control")}}
+                    <br/>
+               </div>
+               <div class="col-md-2 mb-3">
+                    {{form.cp.label() }}{{form.cp(size="10",class="form-control")}}
+                    <br/>
+               </div>
+               <div class="col-md-3 mb-3">
+                    {{form.ciudad.label() }}{{form.ciudad(size="10",class="form-control")}}
+                    <br/>
+               </div>
+               <div class="col-md-5 mb-3">
+                    {{form.varios.label() }}<br/>{{form.varios(rows="5",cols="60",class="form-control")}}
+                    <br/>
+               </div>
+           </div>
+           <div class="row">
+                <div class="col-md-4 mb-3">
+                    {{form.submit(class="btn btn-lg btn-primary btn-block")}}
+                </div>
+               <div class="col-md-2 mb-3">
+                     <button type="button" class="btn btn-lg btn-info btn-block">Cancelar</button>
+                </div>
+
+           </div>
+       </form>
+</div>
+{% endblock %}
