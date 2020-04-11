@@ -1,0 +1,50 @@
+
+            {%if tipo_botones==1%}
+            <a href="{{url_for('inicio',fin=3)}}">
+            {%elif tipo_botones==2%}
+            <a href="{{url_for('cita_edit', idpac=paciente.id)}}">
+                {% endif %}
+                <button type="button" class="btn btn-primary">Crear cita</button>
+            </a>
+            {%if tipo_botones==1%}
+            <a href="{{url_for('inicio')}}">
+            {%elif tipo_botones==2%}
+            <a href="{{url_for('paciente',id=paciente.id)}}">
+                {% endif %}
+                <button type="button" class="btn btn-info">Ver TODAS las citas</button>
+            </a>
+            {%if tipo_botones==1%}
+            <a href="{{url_for('inicio',fin=3)}}">
+            {%elif tipo_botones==2%}
+            <a href="{{url_for('paciente',id=paciente.id,fin=3)}}">
+                {% endif %}
+                <button type="button" class="btn btn-info">Ver citas finalizadas</button>
+            </a>
+            {%if tipo_botones==1%}
+            <a href="{{url_for('inicio',fin=1)}}">
+            {%elif tipo_botones==2%}
+            <a href="{{url_for('paciente',id=paciente.id,fin=1)}}">
+                {% endif %}
+                <button type="button" class="btn btn-info">Ver citas pendientes</button>
+            </a>
+            {%if tipo_botones==1%}
+            <a href="{{url_for('inicio',fin=2)}}">
+            {%elif tipo_botones==2%}
+            <a href="{{url_for('paciente',id=paciente.id,fin=2)}}">
+                 {% endif %}
+                <button type="button" class="btn btn-info">Ver citas canceladas</button>
+            </a>
+            {%if tipo_botones==1%}
+            <a href="{{url_for('inicio',fact=2)}}">
+            {%elif tipo_botones==2%}
+            <a href="{{url_for('paciente',id=paciente.id,fact=2)}}">
+                {% endif %}
+                <button type="button" class="btn btn-info">Ver citas facturadas</button>
+            </a>
+             {%if tipo_botones==1%}
+            <a href="{{url_for('inicio',fact=1)}}">
+            {%elif tipo_botones==2%}
+            <a href="{{url_for('paciente',id=paciente.id,fact=1)}}">
+                {% endif %}
+                <button type="button" class="btn btn-info">Ver citas NO facturadas</button>
+            </a>
