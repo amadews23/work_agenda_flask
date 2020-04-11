@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Gestión de pacientes.{% endblock %}
+{% block contenido %}
+	    <div class="panel panel-default">
+            
+            {% include 'paciente_datos.html' %}
+
+            <br/>
+             <a href="{{url_for('paciente_edit',id=paciente.id)}}">
+                <button type="button" class="btn btn-primary">Modificar paciente</button>
+             </a>
+            <div class="panel-heading"><h3>Lista de citas:</h3></div>
+
+            {% include 'botones_lista_citas.html' %}
+
+            {% include 'lista_citas.html' %}
+
+  	    </div>
+
+  	</div>
+
+{% endblock %}
