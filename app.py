@@ -8,7 +8,7 @@ from aplication.forms import formPaciente, formCita
 from aplication.utilidades import lista_letras_mayusculas, EstadoCita
 from werkzeug.utils import redirect
 
-app = Flask(__name__,template_folder='../templates')
+app = Flask(__name__,template_folder='templates')
 app.config.from_object(config)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 Bootstrap(app)
