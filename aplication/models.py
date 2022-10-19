@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Boolean, Column, ForeignKey
 from sqlalchemy import DateTime, Integer, String, Float
 from sqlalchemy.orm import relationship
-from aplication.app import db
+from app import db
 from aplication.utilidades import EstadoCita
 
 
