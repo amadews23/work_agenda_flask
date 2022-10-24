@@ -4,7 +4,7 @@ import string
 
 def lista_letras_mayusculas():
     #lista_letras_mayusculas=["A", "B", "C", "D", "E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-    lista_letras_mayusculas[]
+    lista_letras_mayusculas=[]
     for l in string.ascii_uppercase:
         lista_letras_mayusculas.append(l)
     return lista_letras_mayusculas
