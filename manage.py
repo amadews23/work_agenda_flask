@@ -1,7 +1,7 @@
 import datetime
 
 from flask_script import Manager
-from aplication.app import app,db
+from app import app,db
 from aplication.models import Citas, Pacientes, EstadoCita
 
 manager = Manager(app)
