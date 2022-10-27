@@ -103,9 +103,7 @@ def pacientes(lap='0', lnom='0'):
 		if lnom!='0':
 			pacientes = db.session.query(Pacientes).filter(Pacientes.nombre.like(lnom+'%'))
 
-	listamayusculas=lista_letras_mayusculas()
-
-	return render_template("pacientes.html",pacientes=pacientes, listamayusculas=listamayusculas)
+	return render_template("pacientes.html",pacientes=pacientes, listamayusculas=lista_letras_mayusculas())
 
 
 @app.route('/paciente/modificar/<id>', methods=["get","post"])
