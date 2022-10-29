@@ -1,8 +1,8 @@
 import enum
-import string
-
 
 def lista_letras_mayusculas():
+    import string
+    
     lista_letras_mayusculas=[]
     for l in string.ascii_uppercase:
         lista_letras_mayusculas.append(l)
