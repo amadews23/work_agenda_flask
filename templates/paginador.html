@@ -1,0 +1,26 @@
+{% if n_paginas > 1 %}
+<div align="center">
+<nav>
+  <ul class="pagination justify-content-center">
+    {% if npag <= 1 %}
+    <li class="disabled"><a class="page-link" href="/{{ruta_inicial}}1">Anterior</a></li>
+    {% else %}
+    <li class="page-item"><a class="page-link" href="/{{ruta_inicial}}{{npag-1}}/">Anterior</a></li>
+    {% endif %}
+	{% for n in range(n_paginas) %}
+    {% if n+1 == npag %}
+    <li class="active">
+    {% else %}
+    <li class="page-item">
+    {% endif %}
+    <a class="page-link" href="/{{ruta_inicial}}{{n+1}}/">{{n+1}}</a></li>
+	{% endfor %}
+    {% if npag >= n_paginas %}
+    <li class="disabled"><a class="page-link" href="/{{ruta_inicial}}{{npag}}/">Siguiente</a></li>
+    {% else %}
+    <li class="page-item"><a class="page-link" href="/{{ruta_inicial}}{{npag+1}}/">Siguiente</a></li>
+    {% endif %}
+  </ul>
+</nav>
+</div>
+{% endif %}

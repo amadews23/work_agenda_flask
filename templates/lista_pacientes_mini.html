@@ -1,0 +1,85 @@
+			<script>
+				 function cambiar_paciente(paciente_datos,
+				 						   paciente_telefonos,
+				 						   paciente_email,
+				 						   paciente_citas,
+				 						   paciente_primera_visita,
+				 						   paciente_domicilio,
+				 						   paciente_varios,
+				 						   paciente_id) {
+
+				 	document.getElementById("paciente_datos").innerHTML = paciente_datos;
+				 	document.getElementById("paciente_telefonos").innerHTML = paciente_telefonos;
+				 	document.getElementById("paciente_email").innerHTML = paciente_email;
+				 	document.getElementById("paciente_citas").innerHTML = paciente_citas;
+				 	document.getElementById("paciente_primera_visita").innerHTML = paciente_primera_visita;
+				 	document.getElementById("paciente_domicilio").innerHTML = paciente_domicilio;
+				 	document.getElementById("paciente_varios").innerHTML = paciente_varios;
+				 	document.getElementById("id_paciente").setAttribute('value', paciente_id);
+
+				 }
+
+			</script>
+  			<table class="table table-bordered">
+
+				<tr>
+					<td><b>Nº</b></td>
+					<td><b>Nombre:</b></td>
+					<td><b>Apellidos:</b></td>
+					<td><b>DNI:</b></td>
+					<td><b>Telefono1:</b></td>
+					<td><b>Telefono2:</b></td>
+					<td><b>Email:</b></td>
+					<td><b>Citas:</b></td>
+                    <td><b>Fecha 1º cita:</b></td>
+				</tr>
+  	    		{% for paciente in pacientes %}
+  	    		<tr>
+					<td>
+						<button type="button" class="btn btn-primary" onclick="cambiar_paciente(
+						'{{paciente.id}} - {{paciente.nombre}} {{paciente.apellidos}} - {{paciente.dni}}',
+						'{{paciente.telefono1}} / {{paciente.telefono2}}',
+						'{{paciente.email}}',
+						'{{paciente.numero_visitas(paciente.id)}}',
+						'{{paciente.primera_visita(paciente.id)[0]}}',
+						'{{paciente.domicilio}} - {{paciente.cp}} - {{paciente.ciudad}}',
+						'{{paciente.varios}}',
+						'{{paciente.id}}'
+						)" data-dismiss="modal">{{paciente.id}}</button>
+
+					</td>
+					<td>
+							<span class="label label-default">{{paciente.nombre}}</span>
+					</td>
+                    <td>
+							<span class="label label-default">{{paciente.apellidos}}</span>
+					</td>
+					<td>
+							<span class="label label-default">{{paciente.dni}}</span>
+					</td>
+                    <td>
+							<span class="label label-default">{{paciente.telefono1}}</span>
+					</td>
+                    <td>
+							<span class="label label-default">{{paciente.telefono2}}</span>
+					</td>
+                    <td>
+							<span class="label label-default">{{paciente.email}}</span>
+					</td>
+                    <td>
+							{% if paciente.numero_visitas(paciente.id) == 0 %}
+							<span class="label label-warning">{{paciente.numero_visitas(paciente.id) }}</span>
+							{% else %}
+							<span class="label label-default">{{paciente.numero_visitas(paciente.id) }}</span>
+							{% endif %}
+					</td>
+                    <td>
+							{% if paciente.primera_visita(paciente.id) == None %}
+							<span class="label label-warning">Ninguna cita</span>
+							{% else %}
+							<span class="label label-default">{{paciente.primera_visita(paciente.id)[0].strftime("%m/%d/%Y") }}</span>
+							{% endif %}
+					</td>
+   	    		</tr>
+  	    		{% endfor %}
+  	    	</table>
