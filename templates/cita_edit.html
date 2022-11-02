@@ -3,9 +3,12 @@
 {% block contenido %}
 <!--<div class="container">-->
 <div class="panel panel-default">
-      <!--<h4 class="mb-3">Paciente:</h4>-->
+
        {% include 'paciente_datos.html' %}
-       <button type="button" class="btn btn-primary">Cambiar paciente</button>
+
+       {% if id_cita !='0' %}
+       {% include 'modal_seleccion_paciente.html' %}
+       {% endif %}
 
        <div class="panel-heading">
             {% if id_cita=='0' %}
@@ -15,18 +18,15 @@
             {% endif %}
        </div>
        <form method="post" action={{url_for("cita_edit")}}>
-
-
            <div class="row">
                <br>
                     {{ form.csrf_token }}
-
                <div class="col-md-2 mb-3">
                     {# Seria deseable usar para el hidden  HiddenField()???? #}
                     {% if idpac=='None' %}
                         <input name="id_paciente" type="hidden" value=0>
                     {% else %}
-                        <input name="id_paciente" type="hidden" value={{idpac}}>
+                        <input name="id_paciente" id="id_paciente" type="hidden" value={{idpac}}>
                     {% endif %}
                     {% if id_cita == '0' %}
                     {# Con type=date saldrá el picker(widjet) del calendario #}
@@ -70,11 +70,14 @@
                 <div class="col-md-4 mb-3">
                     {{form.submit(class="btn btn-lg btn-primary btn-block")}}
                 </div>
+
                 <div class="col-md-2 mb-3">
-                     <button type="button" class="btn btn-lg btn-info btn-block">Cancelar</button>
+                     <a href="javascript:history.back()">
+                         <button type="button" class="btn btn-lg btn-secondary btn-block">Cancelar</button>
+                     </a>
                 </div>
+
            </div>
        </form>
-
 </div>
 {% endblock %}

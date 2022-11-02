@@ -1,12 +1,25 @@
 import enum
 
-def lista_letras_mayusculas():
+
+def devolver_numero_paginas(total_registros,
+                            numero_x_pagina=5):
+
+    numero_de_paginas = total_registros // numero_x_pagina
+
+    if total_registros % numero_x_pagina > 0:
+        numero_de_paginas = numero_de_paginas + 1
+
+    return numero_de_paginas
+
+
+def devolver_lista_mayusculas():
     import string
-    
-    lista_letras_mayusculas=[]
+
+    letras_mayusculas = []
     for l in string.ascii_uppercase:
-        lista_letras_mayusculas.append(l)
-    return lista_letras_mayusculas
+        letras_mayusculas.append(l)
+    return letras_mayusculas
+
 
 class EstadoCita(enum.Enum):
     PENDIENTE = "Pendiente"
@@ -33,7 +46,7 @@ class EstadoCita(enum.Enum):
 
     @classmethod
     def from_name(cls, name):
-         for estado, estado_name in EstadoCita.choices():
+        for estado, estado_name in EstadoCita.choices():
             if estado_name == name or name == str(estado):
                 return estado
-         raise ValueError('{} is not a valid EstadoCita name'.format(name))
+        raise ValueError('{} is not a valid EstadoCita name'.format(name))

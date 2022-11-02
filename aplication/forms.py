@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, DecimalField, TextAreaField, SelectField, BooleanField
+from wtforms import StringField, SubmitField, DecimalField, TextAreaField, SelectField, BooleanField, PasswordField
 from wtforms.fields.html5 import EmailField,  DateTimeField
-from wtforms.validators import  DataRequired
+from wtforms.validators import DataRequired, Required
 
 from aplication.utilidades import EstadoCita
 
@@ -28,3 +28,20 @@ class formCita(FlaskForm):
 	facturada=BooleanField("Facturada")
 	varios=TextAreaField("Varios:")
 	submit = SubmitField('Enviar')
+
+class LoginForm(FlaskForm):
+    username = StringField('Login', validators=[Required()])
+    password = PasswordField('Password', validators=[Required()])
+    submit = SubmitField('Entrar')
+
+class FormUsuario(FlaskForm):
+    username = StringField('Login', validators=[Required()])
+    password = PasswordField('Password', validators=[Required()])
+    nombre = StringField('Nombre completo')
+    email = EmailField('Email')
+    submit = SubmitField('Aceptar')
+
+
+class FormChangePassword(FlaskForm):
+    password = PasswordField('Password', validators=[Required()])
+    submit = SubmitField('Aceptar')
