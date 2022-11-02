@@ -60,7 +60,13 @@ def inicio(id='0', fin='0', fact='0' ):
 		citas=Citas.query.filter_by(paciente_id=id)
 
 	pacientes=Pacientes.query.all()
-	return render_template("inicio.html",citas=citas,pacientes=pacientes,paciente=paciente,EstadoCita=EstadoCita, tipo_botones=tipo_botones)
+	return render_template("inicio.html",
+						   citas=citas,
+						   pacientes=pacientes,
+						   paciente=paciente,
+						   EstadoCita=EstadoCita,
+						   tipo_botones=tipo_botones
+						   )
 
 @app.route('/paciente/<id>')
 @app.route('/paciente/<id>/citas_finalizadas/<fin>')
