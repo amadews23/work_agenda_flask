@@ -1,4 +1,3 @@
-gunicorn==20.1.0
 click==7.1.1
 dominate==2.5.1
 Flask==2.2.5
